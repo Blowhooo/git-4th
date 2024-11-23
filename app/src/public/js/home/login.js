@@ -2,7 +2,7 @@
 
 const id = document.querySelector('#id'),
       psword = document.querySelector('#psword'),
-      loginBtn = document.querySelector('button');
+      loginBtn = document.querySelector('#button');
 
 loginBtn.addEventListener('click', () => {
   const req = {
@@ -16,5 +16,14 @@ loginBtn.addEventListener('click', () => {
       "Content-Type" : "application/json"
     },
     body : JSON.stringify(req),
+  }).then(res => res.json())
+  .then(res => {
+    if(res.success){
+      window.location = "/";
+    }else{
+      alert(res.msg);
+    }
+  }).catch(err => {
+    console.error(new Error("로그인 실패"));
   })
 });
