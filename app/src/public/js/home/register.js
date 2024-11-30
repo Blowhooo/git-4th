@@ -7,11 +7,13 @@ const id = document.querySelector('#id'),
       registerBtn = document.querySelector('#button');
 
 registerBtn.addEventListener('click', () => {
+  if(!id.value) return alert('ID를 입력해주세요.');
+  if(!psword.value) return alert('비밀번호를 입력해주세요.');
+  if(psword.value !== confirmPsword.value) return alert('비밀번호를 입력해주세요.');
   const req = {
     id : id.value,
     name : name.value,
     psword : psword.value,
-    confirmPsword : confirmPsword.value
   };
 
   fetch('/register', {
